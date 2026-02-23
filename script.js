@@ -1,254 +1,225 @@
 let interviewList = [];
-let rejectedList = []
-let currentStatus = 'all'
+let rejectedList = [];
+let currentStatus = 'all-filter-btn';
 
 let total = document.getElementById('total');
-let interviewCount = document.getElementById('interviewCount')
+let interviewCount = document.getElementById('interviewCount');
 let rejectedCount = document.getElementById('rejectedCount');
 
-const allFilterBtn = document.getElementById('all-filter-btn')
-const interviewFilterBtn = document.getElementById('interview-filter-btn')
-const rejectedFilterBtn = document.getElementById('rejected-filter-btn')
+const allFilterBtn = document.getElementById('all-filter-btn');
+const interviewFilterBtn = document.getElementById('interview-filter-btn');
+const rejectedFilterBtn = document.getElementById('rejected-filter-btn');
 
 const allCardSection = document.getElementById('allCards');
-const mainContainer = document.querySelector('main')
-const filterSection = document.getElementById('filtered-section')
+const mainContainer = document.querySelector('main');
+const filterSection = document.getElementById('filtered-section');
+const emptyState = document.getElementById('emptyState');
 
 
+// ================= COUNT =================
 function calculateCount() {
-    total.innerText = allCardSection.children.length //3
-    interviewCount.innerText = interviewList.length
-    rejectedCount.innerText = rejectedList.length
+    total.innerText = allCardSection.children.length;
+    interviewCount.innerText = interviewList.length;
+    rejectedCount.innerText = rejectedList.length;
 }
 
-calculateCount()
+calculateCount();
 
-// step 1;
+
+// ================= EMPTY STATE =================
+function toggleEmptyState(list) {
+    if (list.length === 0) {
+        emptyState.classList.remove('hidden');
+    } else {
+        emptyState.classList.add('hidden');
+    }
+}
+
+
+// ================= TAB STYLE + FILTER =================
 function toggleStyle(id) {
-    // adding gray bg for all
-    allFilterBtn.classList.add('bg-gray-300', 'text-black')
-    interviewFilterBtn.classList.add('bg-gray-300', 'text-black')
-    rejectedFilterBtn.classList.add('bg-gray-300', 'text-black')
 
-    // if any button has black then remove
-    allFilterBtn.classList.remove('bg-black', 'text-white')
-    interviewFilterBtn.classList.remove('bg-black', 'text-white')
-    rejectedFilterBtn.classList.remove('bg-black', 'text-white')
+    allFilterBtn.classList.add('bg-gray-300', 'text-black');
+    interviewFilterBtn.classList.add('bg-gray-300', 'text-black');
+    rejectedFilterBtn.classList.add('bg-gray-300', 'text-black');
 
-    // console.log(id);
-    const selected = document.getElementById(id)//this is the button that clicked for filter
+    allFilterBtn.classList.remove('bg-black', 'text-white');
+    interviewFilterBtn.classList.remove('bg-black', 'text-white');
+    rejectedFilterBtn.classList.remove('bg-black', 'text-white');
 
-    currentStatus = id
-    console.log(currentStatus);
-    // console.log(selected);
+    const selected = document.getElementById(id);
+    currentStatus = id;
 
-    // adding black bg for current button
-    selected.classList.remove('bg-gray-300', 'text-black')
-    selected.classList.add('bg-black', 'text-white')
-    // step 1 finish
+    selected.classList.remove('bg-gray-300', 'text-black');
+    selected.classList.add('bg-black', 'text-white');
 
-    // show and hidden particular section
-    // step 4 start
-    // filtering while clicking the filter button (All, Thriving, Struggling)
-    if (id == 'interview-filter-btn') {
-        allCardSection.classList.add('hidden');
-        filterSection.classList.remove('hidden')
-        renderinterview()
-    } else if (id == 'all-filter-btn') {
+    if (id === 'all-filter-btn') {
         allCardSection.classList.remove('hidden');
-        filterSection.classList.add('hidden')
-    } else if (id == 'rejected-filter-btn') {
+        filterSection.classList.add('hidden');
+        emptyState.classList.add('hidden');
+    }
+
+    if (id === 'interview-filter-btn') {
         allCardSection.classList.add('hidden');
-        filterSection.classList.remove('hidden')
-        renderrejected()
+        filterSection.classList.remove('hidden');
+        renderInterview();
+    }
+
+    if (id === 'rejected-filter-btn') {
+        allCardSection.classList.add('hidden');
+        filterSection.classList.remove('hidden');
+        renderRejected();
     }
 }
 
 
-// step 2 delegation
-mainContainer.addEventListener('click', function (event) {
-    if (event.target.classList.contains('interview-btn')) {
-        const parenNode = event.target.parentNode.parentNode;
-
-        const plantName = parenNode.querySelector('.plantName').innerText
-        const light = parenNode.querySelector('.light').innerText
-        const water = parenNode.querySelector('.water').innerText
-        const status = parenNode.querySelector('.status').innerText
-        const notes = parenNode.querySelector('.notes').innerText
-
-        parenNode.querySelector('.status').innerText = 'interview'
-
-        const cardInfo = {
-            plantName,
-            light,
-            water,
-            status: 'interview',
-            notes
-        }
-
-        const plantExist = interviewList.find(item => item.plantName == cardInfo.plantName)
-
-        if (!plantExist) {
-            interviewList.push(cardInfo)
-        }
-
-        // step 2 finish
-        // removing the plant from struggling list
-        rejectedList = rejectedList.filter(item => item.plantName != cardInfo.plantName)
-
-        // after remove rerender the html
-        if (currentStatus == 'rejected-filter-btn') {
-            renderrejected()
-        }
-
-         calculateCount()
-
-
-    } else if (event.target.classList.contains('rejected-btn')) {
-        const parenNode = event.target.parentNode.parentNode;
-
-        const plantName = parenNode.querySelector('.plantName').innerText
-        const light = parenNode.querySelector('.light').innerText
-        const water = parenNode.querySelector('.water').innerText
-        const status = parenNode.querySelector('.status').innerText
-        const notes = parenNode.querySelector('.notes').innerText
-
-        parenNode.querySelector('.status').innerText = 'rejected'
-
-        const cardInfo = {
-            plantName,
-            light,
-            water,
-            status: 'rejected',
-            notes
-        }
-
-        const plantExist = rejectedList.find(item => item.plantName == cardInfo.plantName)
-
-        if (!plantExist) {
-            rejectedList.push(cardInfo)
-        }
-
-        // removing the plant from thriving list
-        interviewList = interviewList.filter(item => item.plantName != cardInfo.plantName)
-
-        // console.log(thrivingList);
-
-        // after remove rerender the html
-        if (currentStatus == "interview-filter-btn") {
-            renderinterview();
-        }
-        calculateCount()
-
-    }
-
-})
-
-// step 3  html file create
-function renderinterview() {
-    // make the filterSection empty every time
-    filterSection.innerHTML = ''
-
-    // crating innerHtml
-    for (let interview of interviewList) {
-        console.log(interview);
-
-        let div = document.createElement('div');
-        div.className = 'card flex justify-between border p-8'
-        div.innerHTML = `
-         <div class="space-y-6">
-                    <!-- part 1 -->
-                    <div>
-                        <p class="plantName text-4xl">${interview.plantName}</p>
-                        <p class="latinName">Latin Name</p>
-                    </div>
-
-                    <!-- part 2 -->
-                    <div class="flex gap-2">
-                        <p class="light bg-gray-200 px-5">Bright Indicate</p>
-                        <p class="water bg-gray-200 px-5">weekly</p>
-                    </div>
-                    <!-- part 3 -->
-                     <p class="status">${interview.status}</p>
-                     <p class="notes">New leaf unfurling by the east window.</p>
-
-                     <div class="flex gap-5">
-                        <button class="interview-btn bg-green-200 px-4 py-2">interview</button>
-                        <button class="rejected-btn bg-red-200 px-4 py-2">rejected</button>
-                     </div>
-                </div>
-
-                <!-- main part 2 -->
-                <div>
-                    <button class="btn-delete bg-red-200 text-red-600 px-4 py-2">Delete</button>
-                </div>
-        `
-        filterSection.appendChild(div)
-    }
-}
-
-function renderrejected() {
-    // make the filterSection empty every time
-    filterSection.innerHTML = ''
-    // crating innerHtml
-    for (let rejected of rejectedList) {
-
-        let div = document.createElement('div');
-        div.className = 'card flex justify-between border p-8'
-        div.innerHTML = `
-         <div class="space-y-6">
-                    <!-- part 1 -->
-                    <div>
-                        <p class="plantName text-4xl">${rejected.plantName}</p>
-                        <p class="latinName">Latin Name</p>
-                    </div>
-
-                    <!-- part 2 -->
-                    <div class="flex gap-2">
-                        <p class="light bg-gray-200 px-5">Bright Indicate</p>
-                        <p class="water bg-gray-200 px-5">weekly</p>
-                    </div>
-                    <!-- part 3 -->
-                     <p class="status">${rejected.status}</p>
-                     <p class="notes">New leaf unfurling by the east window.</p>
-
-                     <div class="flex gap-5">
-                        <button class="interview-btn bg-green-200 px-4 py-2">interview</button>
-                        <button class="rejected-btn bg-red-200 px-4 py-2">rejected</button>
-                     </div>
-                </div>
-
-                <!-- main part 2 -->
-                <div>
-                    <button class="btn-delete bg-red-200 text-red-600 px-4 py-2">Delete</button>
-                </div>
-        `
-        filterSection.appendChild(div)
-    }
-}
-
+// ================= EVENT DELEGATION =================
 mainContainer.addEventListener('click', function (event) {
 
+    // INTERVIEW
     if (event.target.classList.contains('interview-btn')) {
-        
+
+        const card = event.target.closest('.card');
+        const plantName = card.querySelector('.plantName').innerText;
+
+        card.querySelector('.status').innerText = 'interview';
+
+        if (!interviewList.find(item => item.plantName === plantName)) {
+            interviewList.push({ plantName, status: 'interview' });
+        }
+
+        rejectedList = rejectedList.filter(item => item.plantName !== plantName);
+
+        if (currentStatus === 'rejected-filter-btn') {
+            renderRejected();
+        }
+
+        calculateCount();
     }
+
+    // REJECTED
     else if (event.target.classList.contains('rejected-btn')) {
-        
+
+        const card = event.target.closest('.card');
+        const plantName = card.querySelector('.plantName').innerText;
+
+        card.querySelector('.status').innerText = 'rejected';
+
+        if (!rejectedList.find(item => item.plantName === plantName)) {
+            rejectedList.push({ plantName, status: 'rejected' });
+        }
+
+        interviewList = interviewList.filter(item => item.plantName !== plantName);
+
+        if (currentStatus === 'interview-filter-btn') {
+            renderInterview();
+        }
+
+        calculateCount();
     }
+
+    // DELETE
     else if (event.target.classList.contains('btn-delete')) {
 
         const card = event.target.closest('.card');
         const plantName = card.querySelector('.plantName').innerText;
 
-        interviewList = interviewList.filter(
-            item => item.plantName !== plantName
-        );
-
-        rejectedList = rejectedList.filter(
-            item => item.plantName !== plantName
-        );
+        interviewList = interviewList.filter(item => item.plantName !== plantName);
+        rejectedList = rejectedList.filter(item => item.plantName !== plantName);
 
         card.remove();
+
+        if (currentStatus === 'interview-filter-btn') {
+            renderInterview();
+        }
+        if (currentStatus === 'rejected-filter-btn') {
+            renderRejected();
+        }
+
         calculateCount();
     }
 });
+
+
+// ================= RENDER INTERVIEW =================
+function renderInterview() {
+    filterSection.innerHTML = '';
+
+    for (let item of interviewList) {
+        let div = document.createElement('div');
+        div.className = 'card flex justify-between border p-8';
+        div.innerHTML = `
+            <div class="space-y-6">
+                    <!-- part 1 -->
+                    <div>
+                        <p class="plantName text-4xl">${item.plantName}</p>
+                        <p class="latinName">Latin Name</p>
+                    </div>
+
+                    <!-- part 2 -->
+                    <div class="flex gap-2">
+                        <p class="light bg-gray-200 px-5">Bright Indicate</p>
+                        <p class="water bg-gray-200 px-5">weekly</p>
+                    </div>
+                    <!-- part 3 -->
+                     <p class="status">${item.status}</p>
+                     <p class="notes">New leaf unfurling by the east window.</p>
+
+                     <div class="flex gap-5">
+                        <button class="interview-btn bg-green-200 px-4 py-2">interview</button>
+                        <button class="rejected-btn bg-red-200 px-4 py-2">rejected</button>
+                     </div>
+                </div>
+
+                <!-- main part 2 -->
+                <div>
+                    <button class="btn-delete bg-red-200 text-red-600 px-4 py-2">Delete</button>
+                </div>
+        `;
+        filterSection.appendChild(div);
+    }
+
+    toggleEmptyState(interviewList);
+}
+
+
+// ================= RENDER REJECTED =================
+function renderRejected() {
+    filterSection.innerHTML = '';
+
+    for (let item of rejectedList) {
+        let div = document.createElement('div');
+        div.className = 'card flex justify-between border p-8';
+        div.innerHTML = `
+            <div class="space-y-6">
+                    <!-- part 1 -->
+                    <div>
+                        <p class="plantName text-4xl">${item.plantName}</p>
+                        <p class="latinName">Latin Name</p>
+                    </div>
+
+                    <!-- part 2 -->
+                    <div class="flex gap-2">
+                        <p class="light bg-gray-200 px-5">Bright Indicate</p>
+                        <p class="water bg-gray-200 px-5">weekly</p>
+                    </div>
+                    <!-- part 3 -->
+                     <p class="status">${item.status}</p>
+                     <p class="notes">New leaf unfurling by the east window.</p>
+
+                     <div class="flex gap-5">
+                        <button class="interview-btn bg-green-200 px-4 py-2">interview</button>
+                        <button class="rejected-btn bg-red-200 px-4 py-2">rejected</button>
+                     </div>
+                </div>
+
+                <!-- main part 2 -->
+                <div>
+                    <button class="btn-delete bg-red-200 text-red-600 px-4 py-2">Delete</button>
+                </div>
+        `;
+        filterSection.appendChild(div);
+    }
+
+    toggleEmptyState(rejectedList);
+}
