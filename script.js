@@ -79,11 +79,11 @@ mainContainer.addEventListener('click', function (event) {
     const card = event.target.closest('.card');
     if (!card) return;
 
-    const company = card.querySelector('.company, .plantName')?.innerText || '';
-    const title = card.querySelector('.title, .latinName')?.innerText || '';
-    const type = card.querySelector('.type, .light')?.innerText || '';
-    const salary = card.querySelector('.salary, .water')?.innerText || '';
-    const notes = card.querySelector('.notes')?.innerText || '';
+    const company = card.querySelector('.company').innerText 
+    const title = card.querySelector('.title').innerText
+    const type = card.querySelector('.type').innerText 
+    const salary = card.querySelector('.salary').innerText 
+    const notes = card.querySelector('.notes').innerText 
 
     if (event.target.classList.contains('interview-btn')) {
         card.querySelector('.status').innerText = 'Interview';
@@ -159,13 +159,13 @@ function renderFiltered(list) {
         div.innerHTML = `
             <div class="space-y-6">
                 <div>
-                    <p class="plantName text-4xl">${item.company}</p>
-                    <p class="latinName">${item.title}</p>
+                    <p class="company text-4xl">${item.company}</p>
+                    <p class="title">${item.title}</p>
                 </div>
 
                 <div class="flex gap-2">
-                    <p class="light bg-gray-200 px-5">${item.type}</p>
-                    <p class="water bg-gray-200 px-5">${item.salary}</p>
+                    <p class="type bg-gray-200 px-5">${item.type}</p>
+                    <p class="salary bg-gray-200 px-5">${item.salary}</p>
                 </div>
 
                 <p class="status">${item.status}</p>
