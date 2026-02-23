@@ -17,17 +17,17 @@
         </h1>
 
         <div class="grid grid-cols-3 gap-8">
-            <div class="bg-blue-100 p-4">
+            <div class="bg-blue-100 p-4 rounded-2xl">
                 <p>Total</p>
                 <p id="total">0</p>
             </div>
 
-            <div class="bg-green-200 p-4">
+            <div class="bg-green-200 p-4 rounded-2xl">
                 <p>Interview</p>
                 <p id="interviewCount">0</p>
             </div>
 
-            <div class="bg-red-200 p-4">
+            <div class="bg-red-200 p-4 rounded-2xl">
                 <p>Rejected</p>
                 <p id="rejectedCount">0</p>
             </div>
@@ -40,7 +40,7 @@
 
         <!-- Filter Buttons -->
         <div class="grid grid-cols-2 ">
-            <div class="mb-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 mb-6 gap-4">
                 <button onclick="toggleStyle('all-filter-btn')" class="bg-black text-white px-5 py-2"
                     id="all-filter-btn">All</button>
 
@@ -76,13 +76,13 @@
             <div class="card flex justify-between border p-8">
                 <div class="space-y-6">
                     <div>
-                        <p class="plantName text-4xl">Mobile First Corp</p>
-                        <p class="latinName">React Native Developer</p>
+                        <p class="company text-4xl">Mobile First Corp</p>
+                        <p class="title">React Native Developer</p>
                     </div>
 
                     <div class="flex gap-2">
-                        <p class="light bg-gray-200 px-5">Remote   [Full-time]</p>
-                        <p class="water bg-gray-200 px-5">$130,000 - $175,000</p>
+                        <p class="type bg-gray-200 px-5">Remote   [Full-time]</p>
+                        <p class="salary bg-gray-200 px-5">$130,000 - $175,000</p>
                     </div>
 
                     <p class="status">Not Applied</p>
@@ -108,13 +108,13 @@
             <div class="card flex justify-between border p-8">
                 <div class="space-y-6">
                     <div>
-                        <p class="plantName text-4xl">WebFlow Agency</p>
-                        <p class="latinName">Web Designer & Developer</p>
+                        <p class="company text-4xl">WebFlow Agency</p>
+                        <p class="title">Web Designer & Developer</p>
                     </div>
 
                     <div class="flex gap-2">
-                        <p class="light bg-gray-200 px-5">Los Angeles, CA • Part-time</p>
-                        <p class="water bg-gray-200 px-5">$80,000 - $120,000</p>
+                        <p class="type bg-gray-200 px-5">Los Angeles, CA • Part-time</p>
+                        <p class="salary bg-gray-200 px-5">$80,000 - $120,000</p>
                     </div>
 
                     <p class="status">Not Applied</p>
@@ -140,13 +140,13 @@
             <div class="card flex justify-between border p-8">
                 <div class="space-y-6">
                     <div>
-                        <p class="plantName text-4xl">DataViz Solutions</p>
-                        <p class="latinName">Data Visualization Specialist</p>
+                        <p class="company text-4xl">DataViz Solutions</p>
+                        <p class="title">Data Visualization Specialist</p>
                     </div>
 
                     <div class="flex gap-2">
-                        <p class="light bg-gray-200 px-5">Boston, MA • Full-time</p>
-                        <p class="water bg-gray-200 px-5">$125,000 - $165,000</p>
+                        <p class="type bg-gray-200 px-5">Boston, MA • Full-time</p>
+                        <p class="salary bg-gray-200 px-5">$125,000 - $165,000</p>
                     </div>
 
                     <p class="status">Not Applied</p>
@@ -173,13 +173,13 @@
             <div class="card flex justify-between border p-8">
                 <div class="space-y-6">
                     <div>
-                        <p class="plantName text-4xl">CloudFirst Inc</p>
-                        <p class="latinName">Backend Developer</p>
+                        <p class="company text-4xl">CloudFirst Inc</p>
+                        <p class="title">Backend Developer</p>
                     </div>
 
                     <div class="flex gap-2">
-                        <p class="light bg-gray-200 px-5">Seattle, WA • Full-time</p>
-                        <p class="water bg-gray-200 px-5">$140,000 - $190,000</p>
+                        <p class="type bg-gray-200 px-5">Seattle, WA • Full-time</p>
+                        <p class="salary bg-gray-200 px-5">$140,000 - $190,000</p>
                     </div>
 
                     <p class="status">Not Applied</p>
@@ -205,13 +205,13 @@
             <div class="card flex justify-between border p-8">
                 <div class="space-y-6">
                     <div>
-                        <p class="plantName text-4xl">Innovation Labs</p>
-                        <p class="latinName">UI/UX Engineer</p>
+                        <p class="company text-4xl">Innovation Labs</p>
+                        <p class="title">UI/UX Engineer</p>
                     </div>
 
                     <div class="flex gap-2">
-                        <p class="light bg-gray-200 px-5">Austin, TX • Full-time</p>
-                        <p class="water bg-gray-200 px-5">$110,000 - $150,000</p>
+                        <p class="type bg-gray-200 px-5">Austin, TX • Full-time</p>
+                        <p class="salary bg-gray-200 px-5">$110,000 - $150,000</p>
                     </div>
 
                     <p class="status">Not Applied</p>
@@ -237,13 +237,13 @@
             <div class="card flex justify-between border p-8">
                 <div class="space-y-6">
                     <div>
-                        <p class="plantName text-4xl">MegaCorp Solutions</p>
-                        <p class="latinName">JavaScript Developer</p>
+                        <p class="company text-4xl">MegaCorp Solutions</p>
+                        <p class="title">JavaScript Developer</p>
                     </div>
 
                     <div class="flex gap-2">
-                        <p class="light bg-gray-200 px-5">New York, NY • Full-time </p>
-                        <p class="water bg-gray-200 px-5"> $130,000 - $170,00</p>
+                        <p class="type bg-gray-200 px-5">New York, NY • Full-time </p>
+                        <p class="salary bg-gray-200 px-5"> $130,000 - $170,00</p>
                     </div>
 
                     <p class="status">Not Applied</p>
@@ -269,13 +269,13 @@
             <div class="card flex justify-between border p-8">
                 <div class="space-y-6">
                     <div>
-                        <p class="plantName text-4xl">StartupXYZ</p>
-                        <p class="latinName">Full Stack Engineer</p>
+                        <p class="company text-4xl">StartupXYZ</p>
+                        <p class="title">Full Stack Engineer</p>
                     </div>
 
                     <div class="flex gap-2">
-                        <p class="light bg-gray-200 px-5">Remote • Full-time </p>
-                        <p class="water bg-gray-200 px-5">$120,000 - $160,000</p>
+                        <p class="type bg-gray-200 px-5">Remote • Full-time </p>
+                        <p class="salary bg-gray-200 px-5">$120,000 - $160,000</p>
                     </div>
 
                     <p class="status">Not Applied</p>
@@ -301,13 +301,13 @@
             <div class="card flex justify-between border p-8">
                 <div class="space-y-6">
                     <div>
-                        <p class="plantName text-4xl">TechCorp Industries</p>
-                        <p class="latinName">Senior Frontend Developer</p>
+                        <p class="title text-4xl">TechCorp Industries</p>
+                        <p class="title">Senior Frontend Developer</p>
                     </div>
 
                     <div class="flex gap-2">
-                        <p class="light bg-gray-200 px-5">San Francisco, CA • Full-time </p>
-                        <p class="water bg-gray-200 px-5"> $130,000 - $175,000</p>
+                        <p class="type bg-gray-200 px-5">San Francisco, CA • Full-time </p>
+                        <p class="salary bg-gray-200 px-5"> $130,000 - $175,000</p>
                     </div>
 
                     <p class="status">Not Applied</p>
@@ -333,13 +333,13 @@
             <div class="card flex justify-between border p-8">
                 <div class="space-y-6">
                     <div>
-                        <p class="plantName text-4xl">DataViz Solutions</p>
-                        <p class="latinName">Data Visualization Specialist</p>
+                        <p class="company text-4xl">DataViz Solutions</p>
+                        <p class="title">Data Visualization Specialist</p>
                     </div>
 
                     <div class="flex gap-2">
-                        <p class="light bg-gray-200 px-5">Boston, MA • Full-time</p>
-                        <p class="water bg-gray-200 px-5">$125,000 - $165,000</p>
+                        <p class="type bg-gray-200 px-5">Boston, MA • Full-time</p>
+                        <p class="salary bg-gray-200 px-5">$125,000 - $165,000</p>
                     </div>
 
                     <p class="status">Not Applied</p>
@@ -366,13 +366,13 @@
             <div class="card flex justify-between border p-8">
                 <div class="space-y-6">
                     <div>
-                        <p class="plantName text-4xl">MegaCorp Solutions</p>
-                        <p class="latinName">JavaScript Developer</p>
+                        <p class="company text-4xl">MegaCorp Solutions</p>
+                        <p class="title">JavaScript Developer</p>
                     </div>
 
                     <div class="flex gap-2">
-                        <p class="light bg-gray-200 px-5">New York, NY • Full-time </p>
-                        <p class="water bg-gray-200 px-5"> $130,000 - $170,00</p>
+                        <p class="type bg-gray-200 px-5">New York, NY • Full-time </p>
+                        <p class="salary bg-gray-200 px-5"> $130,000 - $170,00</p>
                     </div>
 
                     <p class="status">Not Applied</p>
