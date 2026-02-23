@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,197 +8,205 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
+
 <body>
 
-<header class="w-[80%] mx-auto">
-    <h1 class="text-6xl font-bold text-blue-950 py-7">
-        Job Application Tracker
-    </h1>
+    <header class="w-[80%] mx-auto">
+        <h1 class="text-6xl font-bold text-blue-950 py-7">
+            Job Application Tracker
+        </h1>
 
-    <div class="grid grid-cols-3 gap-8">
-        <div class="bg-blue-100 p-4">
-            <p>Total</p>
-            <p id="total">0</p>
+        <div class="grid grid-cols-3 gap-8">
+            <div class="bg-blue-100 p-4">
+                <p>Total</p>
+                <p id="total">0</p>
+            </div>
+
+            <div class="bg-green-200 p-4">
+                <p>Interview</p>
+                <p id="interviewCount">0</p>
+            </div>
+
+            <div class="bg-red-200 p-4">
+                <p>Rejected</p>
+                <p id="rejectedCount">0</p>
+            </div>
+        </div>
+    </header>
+
+    <hr class="my-5">
+
+    <main class="w-[80%] mx-auto">
+
+        <!-- Filter Buttons -->
+        <div class="grid grid-cols-2 ">
+            <div class="mb-6">
+                <button onclick="toggleStyle('all-filter-btn')" class="bg-black text-white px-5 py-2"
+                    id="all-filter-btn">All</button>
+
+                <button onclick="toggleStyle('interview-filter-btn')" class="bg-gray-300 px-5 py-2"
+                    id="interview-filter-btn">Interview</button>
+
+                <button onclick="toggleStyle('rejected-filter-btn')" class="bg-gray-300 px-5 py-2"
+                    id="rejected-filter-btn">Rejected</button>
+
+            </div>
+            <div class="border border-amber-500 mx-auto grid grid-cols-2 px-4 ">
+                <p id="righttotal">0</p>
+                <p>Total</p>
+            </div>
         </div>
 
-        <div class="bg-green-200 p-4">
-            <p>Interview</p>
-            <p id="interviewCount">0</p>
+
+
+        <!-- Filtered Section -->
+        <section id="filtered-section" class="hidden space-y-6"></section>
+
+        <!-- Empty State (ADDED) -->
+        <div id="emptyState" class="hidden text-center py-20">
+            <div class="text-6xl mb-4 "><img class=" mx-auto" src="./jobs.png" alt=""></div>
+            <h2 class="text-2xl font-semibold">No jobs Available</h2>
+            <p class="text-gray-500">Please select another tab or add jobs</p>
         </div>
 
-        <div class="bg-red-200 p-4">
-            <p>Rejected</p>
-            <p id="rejectedCount">0</p>
-        </div>
-    </div>
-</header>
+        <!-- All Cards -->
+        <section id="allCards" class="space-y-6">
 
-<hr class="my-5">
+            <!-- card 1 -->
+            <div class="card flex justify-between border p-8">
+                <div class="space-y-6">
+                    <div>
+                        <p class="plantName text-4xl">Job Name 1</p>
+                        <p class="latinName">Latin Name</p>
+                    </div>
 
-<main class="w-[80%] mx-auto">
+                    <div class="flex gap-2">
+                        <p class="light bg-gray-200 px-5">Bright Indicate</p>
+                        <p class="water bg-gray-200 px-5">Weekly</p>
+                    </div>
 
-    <!-- Filter Buttons -->
-    <div class="mb-6">
-        <button onclick="toggleStyle('all-filter-btn')"
-            class="bg-black text-white px-5 py-2"
-            id="all-filter-btn">All</button>
+                    <p class="status">Not applicable</p>
+                    <p class="notes">New leaf unfurling by the east window.</p>
 
-        <button onclick="toggleStyle('interview-filter-btn')"
-            class="bg-gray-300 px-5 py-2"
-            id="interview-filter-btn">Interview</button>
+                    <div class="flex gap-5">
+                        <button class="interview-btn bg-green-200 px-4 py-2">
+                            Interview
+                        </button>
+                        <button class="rejected-btn bg-red-200 px-4 py-2">
+                            Rejected
+                        </button>
+                    </div>
+                </div>
 
-        <button onclick="toggleStyle('rejected-filter-btn')"
-            class="bg-gray-300 px-5 py-2"
-            id="rejected-filter-btn">Rejected</button>
-    </div>
-
-    <!-- Filtered Section -->
-    <section id="filtered-section" class="hidden space-y-6"></section>
-
-    <!-- Empty State (ADDED) -->
-    <div id="emptyState" class="hidden text-center py-20">
-        <div class="text-6xl mb-4 "><img class=" mx-auto" src="./jobs.png" alt=""></div>
-        <h2 class="text-2xl font-semibold">No jobs Available</h2>
-        <p class="text-gray-500">Please select another tab or add jobs</p>
-    </div>
-
-    <!-- All Cards -->
-    <section id="allCards" class="space-y-6">
-
-        <!-- card 1 -->
-        <div class="card flex justify-between border p-8">
-            <div class="space-y-6">
                 <div>
-                    <p class="plantName text-4xl">Job Name 1</p>
-                    <p class="latinName">Latin Name</p>
-                </div>
-
-                <div class="flex gap-2">
-                    <p class="light bg-gray-200 px-5">Bright Indicate</p>
-                    <p class="water bg-gray-200 px-5">Weekly</p>
-                </div>
-
-                <p class="status">Not applicable</p>
-                <p class="notes">New leaf unfurling by the east window.</p>
-
-                <div class="flex gap-5">
-                    <button class="interview-btn bg-green-200 px-4 py-2">
-                        Interview
-                    </button>
-                    <button class="rejected-btn bg-red-200 px-4 py-2">
-                        Rejected
+                    <button class="btn-delete bg-red-200 text-red-600 px-4 py-2">
+                        Delete
                     </button>
                 </div>
             </div>
+            <!-- card 2 -->
+            <div class="card flex justify-between border p-8">
+                <div class="space-y-6">
+                    <div>
+                        <p class="plantName text-4xl">Job Name 2</p>
+                        <p class="latinName">Latin Name</p>
+                    </div>
 
-            <div>
-                <button class="btn-delete bg-red-200 text-red-600 px-4 py-2">
-                    Delete
-                </button>
-            </div>
-        </div>
-        <!-- card 2 -->
-        <div class="card flex justify-between border p-8">
-            <div class="space-y-6">
+                    <div class="flex gap-2">
+                        <p class="light bg-gray-200 px-5">Bright Indicate</p>
+                        <p class="water bg-gray-200 px-5">Weekly</p>
+                    </div>
+
+                    <p class="status">Not applicable</p>
+                    <p class="notes">New leaf unfurling by the east window.</p>
+
+                    <div class="flex gap-5">
+                        <button class="interview-btn bg-green-200 px-4 py-2">
+                            Interview
+                        </button>
+                        <button class="rejected-btn bg-red-200 px-4 py-2">
+                            Rejected
+                        </button>
+                    </div>
+                </div>
+
                 <div>
-                    <p class="plantName text-4xl">Job Name 2</p>
-                    <p class="latinName">Latin Name</p>
-                </div>
-
-                <div class="flex gap-2">
-                    <p class="light bg-gray-200 px-5">Bright Indicate</p>
-                    <p class="water bg-gray-200 px-5">Weekly</p>
-                </div>
-
-                <p class="status">Not applicable</p>
-                <p class="notes">New leaf unfurling by the east window.</p>
-
-                <div class="flex gap-5">
-                    <button class="interview-btn bg-green-200 px-4 py-2">
-                        Interview
-                    </button>
-                    <button class="rejected-btn bg-red-200 px-4 py-2">
-                        Rejected
+                    <button class="btn-delete bg-red-200 text-red-600 px-4 py-2">
+                        Delete
                     </button>
                 </div>
             </div>
+            <!-- card 3 -->
+            <div class="card flex justify-between border p-8">
+                <div class="space-y-6">
+                    <div>
+                        <p class="plantName text-4xl">Job Name 3</p>
+                        <p class="latinName">Latin Name</p>
+                    </div>
 
-            <div>
-                <button class="btn-delete bg-red-200 text-red-600 px-4 py-2">
-                    Delete
-                </button>
-            </div>
-        </div>
-        <!-- card 3 -->
-        <div class="card flex justify-between border p-8">
-            <div class="space-y-6">
+                    <div class="flex gap-2">
+                        <p class="light bg-gray-200 px-5">Bright Indicate</p>
+                        <p class="water bg-gray-200 px-5">Weekly</p>
+                    </div>
+
+                    <p class="status">Not applicable</p>
+                    <p class="notes">New leaf unfurling by the east window.</p>
+
+                    <div class="flex gap-5">
+                        <button class="interview-btn bg-green-200 px-4 py-2">
+                            Interview
+                        </button>
+                        <button class="rejected-btn bg-red-200 px-4 py-2">
+                            Rejected
+                        </button>
+                    </div>
+                </div>
+
                 <div>
-                    <p class="plantName text-4xl">Job Name 3</p>
-                    <p class="latinName">Latin Name</p>
-                </div>
-
-                <div class="flex gap-2">
-                    <p class="light bg-gray-200 px-5">Bright Indicate</p>
-                    <p class="water bg-gray-200 px-5">Weekly</p>
-                </div>
-
-                <p class="status">Not applicable</p>
-                <p class="notes">New leaf unfurling by the east window.</p>
-
-                <div class="flex gap-5">
-                    <button class="interview-btn bg-green-200 px-4 py-2">
-                        Interview
-                    </button>
-                    <button class="rejected-btn bg-red-200 px-4 py-2">
-                        Rejected
+                    <button class="btn-delete bg-red-200 text-red-600 px-4 py-2">
+                        Delete
                     </button>
                 </div>
             </div>
+            <!-- card 4 -->
+            <div class="card flex justify-between border p-8">
+                <div class="space-y-6">
+                    <div>
+                        <p class="plantName text-4xl">Job Name 4</p>
+                        <p class="latinName">Latin Name</p>
+                    </div>
 
-            <div>
-                <button class="btn-delete bg-red-200 text-red-600 px-4 py-2">
-                    Delete
-                </button>
-            </div>
-        </div>
-        <!-- card 4 -->
-        <div class="card flex justify-between border p-8">
-            <div class="space-y-6">
+                    <div class="flex gap-2">
+                        <p class="light bg-gray-200 px-5">Bright Indicate</p>
+                        <p class="water bg-gray-200 px-5">Weekly</p>
+                    </div>
+
+                    <p class="status">Not applicable</p>
+                    <p class="notes">New leaf unfurling by the east window.</p>
+
+                    <div class="flex gap-5">
+                        <button class="interview-btn bg-green-200 px-4 py-2">
+                            Interview
+                        </button>
+                        <button class="rejected-btn bg-red-200 px-4 py-2">
+                            Rejected
+                        </button>
+                    </div>
+                </div>
+
                 <div>
-                    <p class="plantName text-4xl">Job Name 4</p>
-                    <p class="latinName">Latin Name</p>
-                </div>
-
-                <div class="flex gap-2">
-                    <p class="light bg-gray-200 px-5">Bright Indicate</p>
-                    <p class="water bg-gray-200 px-5">Weekly</p>
-                </div>
-
-                <p class="status">Not applicable</p>
-                <p class="notes">New leaf unfurling by the east window.</p>
-
-                <div class="flex gap-5">
-                    <button class="interview-btn bg-green-200 px-4 py-2">
-                        Interview
-                    </button>
-                    <button class="rejected-btn bg-red-200 px-4 py-2">
-                        Rejected
+                    <button class="btn-delete bg-red-200 text-red-600 px-4 py-2">
+                        Delete
                     </button>
                 </div>
             </div>
 
-            <div>
-                <button class="btn-delete bg-red-200 text-red-600 px-4 py-2">
-                    Delete
-                </button>
-            </div>
-        </div>
 
-        
 
-    </section>
-</main>
+        </section>
+    </main>
 
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
+
 </html>
