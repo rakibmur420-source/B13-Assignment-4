@@ -1,58 +1,50 @@
 
+##  Overview
+This project is a responsive and interactive web application developed as part of an assignment.  
+It demonstrates modern UI design, clean structure, and dynamic functionality using JavaScript.
 
-## Answers to Questions
 
-### 1. What is the difference between getElementById, getElementsByClassName, and querySelector / querySelectorAll?
+##  Technologies Used
+- HTML5  
+- CSS3  
+- JavaScript (ES6)
 
-ANS:- getElementById() is used to select one element using its unique id. It always returns a single element and is very fast.
+---
 
-getElementsByClassName() selects multiple elements that have the same class name. It returns an HTMLCollection, it's live ,it updates automatically when the DOM changes.
+##  Features
+- Responsive design for all devices (Mobile, Tablet, Desktop)
+- Interactive user interface
+- Dynamic functionality using JavaScript
+- Clean and maintainable code structure
+- Smooth user experience
 
-querySelector() selects the first element that matches a CSS selector.
-querySelectorAll() selects all matching elements and returns a NodeList.
+##  Dependencies
+No external libraries or frameworks are used.  
+This project is built using pure HTML, CSS, and JavaScript.
 
-getElementById -> single element by id
-getElementsByClassName -> multiple elements by class
-querySelector / querySelectorAll -> flexible, CSS-selector based
 
-### 2. How do you create and insert a new element into the DOM?
+## ⚙️ How to Run Locally
 
-ANS:- A new element is created using document.createElement().
-Content can be added using innerText or innerHTML.
+ Clone the repository:
 
-To insert the element into the DOM, methods like appendChild(), prepend(), or insertBefore() are used.
+git clone https://github.com/your-username/B13-Assignment-4.git
 
-This process allows JavaScript to dynamically add content to a webpage, which is essential for interactive web applications.
+##  Relevant Links
+ live link: https://rakibmur420-source.github.io/B13-Assignment-4/
 
-### 3. What is Event Bubbling? And how does it work?
+ git repo link: https://github.com/rakibmur420-source?tab=repositories
+ 
+## Screenshort
 
-ANS:-  Event Bubbling is a process in JavaScript where an event starts from the target element and then propagates upward through its parent elements up to the document.
+<img width="1812" height="831" alt="Screenshot 2026-04-09 154303" src="https://github.com/user-attachments/assets/9cb7336e-df9d-4973-9239-623f97907919" />
+<img width="1822" height="845" alt="Screenshot 2026-04-09 154228" src="https://github.com/user-attachments/assets/2930be65-fd50-4775-b42f-5b5309df205e" />
+<img width="1807" height="846" alt="Screenshot 2026-04-09 154314" src="https://github.com/user-attachments/assets/97a786e4-1db9-4def-9931-e1c9a194ea01" />
 
-exp, if a button is inside a div and the button is clicked, the event first triggers on the button, then on the div, then on the body.
 
-By default, most JavaScript events follow the bubbling phase.
-Understanding event bubbling helps in handling events efficiently.
 
-### 4. What is Event Delegation in JavaScript? Why is it useful?
 
-ANS :- Event Delegation is a technique where a single event listener is added to a parent element instead of adding listeners to multiple child elements.
 
-It works using event bubbling. The parent detects which child triggered the event using event.target.
 
-Why it is useful:
- 1. Reduces the number of event listeners
- 2. improves performance
- 3. Works for dynamically added elements
 
-Because of these benefits, it is widely used in modern web development.
 
-### 5. What is the difference between preventDefault() and stopPropagation() methods?
-
-ANS:-  preventDefault() stops the default behavior of an element.
-exp: preventing a form from submitting or stopping a link from opening.
-
-stopPropagation() stops the event from bubbling to parent elements.
-
-preventDefault() -> stops default action
-stopPropagation() -> stops event flow
 
